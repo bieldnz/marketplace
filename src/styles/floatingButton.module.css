@@ -1,0 +1,19 @@
+.allFloating{
+    height: 60px;
+    background-color: darkblue;
+    color: white;
+    padding: 0 5px 0 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    position: absolute;
+    text-align: center;
+    top: calc(100% - 90px);
+    left: calc(100% - 200px);;
+}
+.allFloating p{
+    font-size: 20px;
+    margin: 0;
+}
