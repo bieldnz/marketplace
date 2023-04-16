@@ -27,7 +27,7 @@ const ProductForm = ({id, booleanProps, productData, handleForm}: ProductProps) 
     }
     const submit = (productSubmited: any) => {
         if(productSubmited.name.length < 3 || productSubmited.name.length > 30){
-            alert("Nome precisa ter entre 4 e 30 caracteress.")
+            alert("Nome precisa ter entre 4 e 30 caracteres.")
             return
         }
         if(productSubmited.price < 0){
