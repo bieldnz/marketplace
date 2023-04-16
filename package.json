@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "backend": "json-server --watch db.json --port $PORT",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
