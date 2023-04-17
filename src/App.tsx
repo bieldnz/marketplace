@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="app">
       <section className="hero">
-        <h1>Welcome to Marketplace!</h1>
+        <h1>Registro de projetos</h1>
       </section>
       <Products/>
       <footer>

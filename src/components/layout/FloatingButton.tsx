@@ -2,14 +2,15 @@ import React, { ChangeEvent } from 'react'
 import Styles from "../../styles/floatingButton.module.css"
 import { useState } from "react"
 import ProductForm from './ProductForm'
+import { ProductType } from './types/ProductType'
 
 type ButtonPros = {
-    productsData: any,
+    productsData: ProductType[],
 }
 
 const FloatingButton = ({productsData}: ButtonPros) => {
 
-    async function handleSave(productData: any) {
+    async function handleSave(productData: ProductType) {
         await fetch('https://json3-vpe5.vercel.app/products', {
             method: "POST",
             headers: {
@@ -27,12 +28,13 @@ const FloatingButton = ({productsData}: ButtonPros) => {
     console.log(booleanProps)
     return (
         <>
-            <button className={Styles.allFloating} onClick={() => setBooleanProps(!booleanProps)}>ADICIONE PRODUTO</button>
+            <button className={Styles.allFloating} onClick={() => setBooleanProps(!booleanProps)}>ADICIONE PROJETO</button>
             <ProductForm
                 id={0}
                 booleanProps={booleanProps}
                 productData={productsData}
                 handleForm={handleSave}
+                title='Criar Projeto'
             />
         </>
     )

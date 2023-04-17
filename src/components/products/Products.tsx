@@ -4,13 +4,16 @@ import Product from './Product'
 import Styles from "../../styles/products.module.css"
 import FloatingButton from '../layout/FloatingButton'
 import ProductForm from '../layout/ProductForm'
+import { ProductType } from '../layout/types/ProductType'
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 const Products = () => {
-    const [products, setProducts] = useState<any>({})
-    const [id, setId] = useState(0)
+    const [products, setProducts] = useState<ProductType[]>([])
+    const [id, setId] = useState<number | undefined>(0)
     const [booleanProps, setBooleanProps] = useState(false)
 
-    const searchProducts: any = async () => {
+    const searchProducts = async () => {
         await fetch("https://json3-vpe5.vercel.app/products", {
             method: "GET",
             headers: { "Content-Type": "application/json" }
@@ -26,7 +29,7 @@ const Products = () => {
         console.log(products)
     }, [])
 
-    async function handleRemove(id: any) {
+    async function handleRemove(id: number | undefined) {
         console.log("KÇHN")
         await fetch(`https://json3-vpe5.vercel.app/products/${id}`, {
             method: 'DELETE',
@@ -41,12 +44,12 @@ const Products = () => {
         location.reload()
     }
 
-    const handleEdit = (id: any) => {
+    const handleEdit = (id: number | undefined) => {
         setBooleanProps(!booleanProps)
         setId(id)
     }
     
-    async function edit(products: any) {
+    async function edit(products: ProductType) {
         setBooleanProps(!booleanProps)
         await fetch(`https://json3-vpe5.vercel.app/products/${products.id}`, {
             method: "PATCH",
@@ -63,18 +66,20 @@ const Products = () => {
 
     return (
         <div className={Styles.featuredProducts}>
-            <ProductForm handleForm={edit} productData={products} id={id} booleanProps={booleanProps}/>
+            
+            <ProductForm handleForm={edit} productData={products} id={id} booleanProps={booleanProps} title='Editar Projeto'/>
             <FloatingButton productsData={products}/>
-            {products.length > 0 ? products.map((product: any) => (
+            {products.length > 0 ? products.map((product: ProductType) => (
                 <Product
                     id={product.id}
                     name={product.name}
                     price={product.price}
+                    descricao={product.descricao}
                     key={product.id}
                     handleRemove={handleRemove}
                     handleEdit={handleEdit}
                 />
-            )): <h3 className={Styles.emptyProducts}>Carregando</h3>}
+            )): <h3 className={Styles.emptyProducts}>Insira um projeto</h3>}
         </div>
     )
 }
